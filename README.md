@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# 🚀 StellarPay — Simple Payment dApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+StellarPay is a high-performance, modern decentralized application (dApp) built on the Stellar network. It allows users to securely connect their Freighter wallet, check their XLM balance, and send payments on the Stellar Testnet with a premium, user-friendly interface.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌟 Key Features
 
-### `npm start`
+*   **Wallet Integration**: Full support for the Freighter wallet extension.
+*   **Live Balance Fetching**: Real-time retrieval of XLM balances from the Stellar Horizon server.
+*   **Smart Payments**: Automatically detects if a destination account exists and switches between `Payment` and `Create Account` operations accordingly.
+*   **Advanced Error Handling**: Precise feedback for common blockchain issues (insufficient funds, sequence mismatches, etc.).
+*   **Premium UI**: A sleek, glassmorphism-inspired dark theme designed for a professional user experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠 Tech Stack
 
-### `npm test`
+*   **Frontend**: React.js
+*   **Blockchain**: Stellar SDK (`@stellar/stellar-sdk`)
+*   **Wallet API**: Freighter API (`@stellar/freighter-api`)
+*   **Styling**: Vanilla CSS (Modern CSS3 with Glassmorphism)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Setup Instructions (How to run locally)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Follow these steps to get your local development environment running:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Prerequisites
+*   Ensure you have [Node.js](https://nodejs.org/) installed.
+*   Install the [Freighter Wallet](https://www.freighter.app/) extension in your browser and switch it to **Testnet**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Clone the Repository
+```bash
+git clone https://github.com/YOUR_USERNAME/stellar-connect-wallet.git
+cd stellar-connect-wallet
+```
 
-### `npm run eject`
+### 3. Install Dependencies
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 4. Run the Application
+```bash
+npm start
+```
+The application will be available at `http://localhost:3000` (or `http://localhost:3002` if port 3000 is occupied).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 5. Fund Your Wallet
+If you are using a new account, fund it using the [Stellar Laboratory Friendbot](https://laboratory.stellar.org/#account-creator?network=testnet) before testing.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📸 Screenshots
 
-## Learn More
+### 1. Wallet Connected State
+*Connect button transforms into a secure wallet indicator.*
+![Connected State](./screenshots/Screenshot%202026-04-15%20202000.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2. Balance Displayed
+*Live XLM balance fetched directly from the Testnet.*
+![Balance Displayed](./screenshots/Screenshot%202026-04-15%20202000.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Successful Testnet Transaction
+*Transaction signing and submission process via Freighter.*
+![Successful Transaction](./screenshots/Screenshot%202026-04-15%20202151.png)
 
-### Code Splitting
+### 4. Transaction Result
+*User receives a clear confirmation message with a success alert.*
+![Transaction Result](./screenshots/Screenshot%202026-04-15%20202224.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📜 License
+This project is licensed under the MIT License.
