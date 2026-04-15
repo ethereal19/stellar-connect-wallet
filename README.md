@@ -2,6 +2,10 @@
 
 StellarPay is a high-performance, modern decentralized application (dApp) built on the Stellar network. It allows users to securely connect their Freighter wallet, check their XLM balance, and send payments on the Stellar Testnet with a premium, user-friendly interface.
 
+
+
+🌐 Live Demo
+https://stellar-connect-wallet-one.vercel.app/
 ---
 
 ## 🌟 Key Features
