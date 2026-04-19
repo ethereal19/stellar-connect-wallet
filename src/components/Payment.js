@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { sendXLM, getBalance } from './Freighter';
+import { sendXLM, getAccountBalance } from '../services/stellarService';
 import './Payment.css';
 
 const Payment = ({ publicKey, balance, onBalanceUpdate }) => {
@@ -44,14 +44,14 @@ const Payment = ({ publicKey, balance, onBalanceUpdate }) => {
       // Phase 5-7: Create, Sign, and Submit
       // Ensure amount is not in scientific notation (e.g., 1e-7)
       const formattedAmount = parseFloat(amount).toFixed(7);
-      const result = await sendXLM(destination, formattedAmount);
+      const result = await sendXLM(destination, formattedAmount, publicKey);
       console.log('Transaction Result:', result);
       
       // Phase 8: Success Outcome
       setStatus({ state: 'success', message: `Transfer complete! XLM sent successfully.` });
       
       // Phase 9: UI Update & Refresh Balance
-      const newBalance = await getBalance();
+      const newBalance = await getAccountBalance(publicKey);
       onBalanceUpdate(newBalance);
       
       // Clear fields

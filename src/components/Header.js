@@ -1,25 +1,25 @@
 import React from 'react';
 import "./Header.css";
-import { checkConnection, retrievePublicKey, getBalance } from './Freighter';
+import { connectWallet, getAccountBalance, disconnectWallet } from '../services/stellarService';
 
 const Header = ({ connected, setConnected, publicKey, setPublicKey, balance, setBalance }) => {
 
-  const connectWallet = async () => {
+  const connectWalletHandler = async () => {
     try {
-      const allowed = await checkConnection();
-      if (!allowed) return alert("Permission denied or Freighter not installed");
+      const key = await connectWallet();
+      if (!key) return;
 
-      const key = await retrievePublicKey();
-      const bal = await getBalance();
+      const bal = await getAccountBalance(key);
       setPublicKey(key);
       setBalance(bal);
       setConnected(true);
     } catch (e) {
-      console.error(e);
+      console.error("Connection failed", e);
     }
   };
 
-  const disconnectWallet = () => {
+  const handleDisconnect = async () => {
+    await disconnectWallet();
     setConnected(false);
     setPublicKey('');
     setBalance('');
@@ -38,12 +38,12 @@ const Header = ({ connected, setConnected, publicKey, setPublicKey, balance, set
               <span className="address">{publicKey.slice(0, 4)}...{publicKey.slice(-4)}</span>
               <span className="balance">{parseFloat(balance).toLocaleString(undefined, {minimumFractionDigits: 2})} XLM</span>
             </div>
-            <button className="disconnect-btn" onClick={disconnectWallet}>
+            <button className="disconnect-btn" onClick={handleDisconnect}>
               Disconnect
             </button>
           </div>
         ) : (
-          <button className="connect-btn" onClick={connectWallet}>
+          <button className="connect-btn" onClick={connectWalletHandler}>
             Connect Wallet
           </button>
         )}

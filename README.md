@@ -1,6 +1,6 @@
-# 🚀 StellarPay — Simple Payment dApp
+# 🌟 StellarPay — Decentralized Crowdfunding dApp
 
-StellarPay is a high-performance, modern decentralized application (dApp) built on the Stellar network. It allows users to securely connect their Freighter wallet, check their XLM balance, and send payments on the Stellar Testnet with a premium, user-friendly interface.
+A fully decentralized crowdfunding platform built on the **Stellar Testnet** using **Soroban smart contracts**. Users can create campaigns, donate XLM, and track progress in real-time — all powered by on-chain data.
 
 
 
@@ -8,32 +8,54 @@ StellarPay is a high-performance, modern decentralized application (dApp) built 
 https://stellar-connect-wallet-one.vercel.app/
 ---
 
-## 🌟 Key Features
+## ✨ Features
 
-*   **Wallet Integration**: Full support for the Freighter wallet extension.
-*   **Live Balance Fetching**: Real-time retrieval of XLM balances from the Stellar Horizon server.
-*   **Smart Payments**: Automatically detects if a destination account exists and switches between `Payment` and `Create Account` operations accordingly.
-*   **Advanced Error Handling**: Precise feedback for common blockchain issues (insufficient funds, sequence mismatches, etc.).
-*   **Premium UI**: A sleek, glassmorphism-inspired dark theme designed for a professional user experience.
+*   **Wallet Integration**: Full support for Freighter wallet and StellarWalletsKit (Albedo, xBull).
+*   **Live Balance Fetching**: Real-time XLM balance from the Stellar Horizon server.
+*   **Crowdfunding dApp**: Decentralized crowdfunding with on-chain campaign initialization, donations, and progress tracking via Soroban smart contracts.
+*   **Transaction Verification**: Each transaction produces a hash that can be verified on the Stellar blockchain explorer.
+*   **Data Persistence**: All campaign data (goal, total raised) is stored on-chain and persists across page refreshes.
+*   **Advanced Error Handling**: Clear feedback for wallet disconnection, insufficient funds, and rejected transactions.
+*   **Rate Limit Protection**: Built-in 120-second cooldown with request deduplication and caching.
+*   **Premium UI**: Sleek glassmorphism dark theme with loading spinners, progress bars, and micro-animations.
 
 ---
 
 ## 🛠 Tech Stack
 
-*   **Frontend**: React.js
-*   **Blockchain**: Stellar SDK (`@stellar/stellar-sdk`)
-*   **Wallet API**: Freighter API (`@stellar/freighter-api`)
-*   **Styling**: Vanilla CSS (Modern CSS3 with Glassmorphism)
+| Layer | Technology |
+|-------|------------|
+| Frontend | React.js |
+| Blockchain | Stellar SDK (`@stellar/stellar-sdk`) |
+| Smart Contract | Soroban (Rust) |
+| Wallet API | StellarWalletsKit + Freighter API |
+| Network | Stellar Testnet |
+| Styling | Vanilla CSS (Glassmorphism) |
 
 ---
 
-## ⚙️ Setup Instructions (How to run locally)
+## 📜 Smart Contract (Soroban)
 
-Follow these steps to get your local development environment running:
+*   **Contract ID**: `CDCCIQ2KVLRFU5GEXGGHTFE5ICCRUZ77H2SFFBNCYFKNCSMGGPQYPLUH`
+*   **Network**: Stellar Testnet
+*   **Source**: `contracts/crowdfund/src/lib.rs`
+
+### Contract Functions
+
+| Function | Description | Arguments |
+|----------|-------------|-----------|
+| `initialize` | Sets the campaign fundraising goal | `target: i128` (in stroops) |
+| `donate` | Records a donation to the campaign | `donor: Address, amount: i128` |
+| `get_total` | Returns total XLM raised (in stroops) | None |
+| `get_target` | Returns the campaign goal (in stroops) | None |
+
+---
+
+## ⚙️ Setup Instructions
 
 ### 1. Prerequisites
-*   Ensure you have [Node.js](https://nodejs.org/) installed.
-*   Install the [Freighter Wallet](https://www.freighter.app/) extension in your browser and switch it to **Testnet**.
+*   [Node.js](https://nodejs.org/) (v16+)
+*   [Freighter Wallet](https://www.freighter.app/) browser extension (set to **Testnet**)
 
 ### 2. Clone the Repository
 ```bash
@@ -50,10 +72,38 @@ npm install
 ```bash
 npm start
 ```
-The application will be available at `http://localhost:3000` (or `http://localhost:3002` if port 3000 is occupied).
+The app will be available at `http://localhost:3000`.
 
 ### 5. Fund Your Wallet
-If you are using a new account, fund it using the [Stellar Laboratory Friendbot](https://laboratory.stellar.org/#account-creator?network=testnet) before testing.
+Fund your Testnet account using the [Stellar Friendbot](https://laboratory.stellar.org/#account-creator?network=testnet).
+
+---
+
+## 🔄 Application Flow
+
+```
+User Action → Smart Contract → Blockchain → Fetch Data → UI Update
+```
+
+1. **Connect Wallet** → Freighter provides the user's public key
+2. **Start Campaign** → Calls `initialize(goal)` on the Soroban contract
+3. **Donate** → Calls `donate(donor, amount)` on the contract
+4. **Fetch Data** → Simulates `get_target()` and `get_total()` to read on-chain state
+5. **Verify** → Transaction hash links directly to Stellar Explorer
+
+---
+
+## 🛡 Error Handling
+
+| Error | User Feedback |
+|-------|---------------|
+| Wallet not connected | "⚠️ Connect your wallet first." |
+| Invalid input | "⚠️ Enter a valid donation amount." |
+| Insufficient balance | "❌ Insufficient funds. You have X XLM." |
+| Donation exceeds goal | "❌ Exceeds goal. Max donation: X XLM." |
+| Transaction rejected | "❌ Transaction rejected by wallet." |
+| Rate limited (429) | 120-second automatic cooldown |
+| Already initialized | "This campaign has already been started." |
 
 ---
 
@@ -63,17 +113,27 @@ If you are using a new account, fund it using the [Stellar Laboratory Friendbot]
 *Connect button transforms into a secure wallet indicator.*
 ![Connected State](./screenshots/Screenshot%202026-04-15%20202000.png)
 
-### 2. Balance Displayed
-*Live XLM balance fetched directly from the Testnet.*
+### 2. Campaign Dashboard
+*Live campaign stats fetched directly from the Soroban smart contract.*
 ![Balance Displayed](./screenshots/Screenshot%202026-04-15%20202000.png)
 
-### 3. Successful Testnet Transaction
-*Transaction signing and submission process via Freighter.*
+### 3. Successful Donation
+*Transaction signing and submission via Freighter with hash verification.*
 ![Successful Transaction](./screenshots/Screenshot%202026-04-15%20202151.png)
 
-### 4. Transaction Result
-*User receives a clear confirmation message with a success alert.*
+### 4. Transaction Verification
+*Each transaction can be verified on the Stellar blockchain explorer.*
 ![Transaction Result](./screenshots/Screenshot%202026-04-15%20202224.png)
+
+---
+
+## 🔗 Transaction Proof
+
+After each successful transaction, a hash is displayed and can be verified at:
+
+```
+https://stellar.expert/explorer/testnet/tx/{TRANSACTION_HASH}
+```
 
 ---
 

@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.env
+/contracts/**/target/
+/contracts/**/target_old/
+/contracts/temp_build/
+build_log.txt
