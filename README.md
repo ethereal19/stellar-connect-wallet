@@ -109,21 +109,21 @@ User Action → Smart Contract → Blockchain → Fetch Data → UI Update
 
 ## 📸 Screenshots
 
-### 1. Wallet Connected State
-*Connect button transforms into a secure wallet indicator.*
-![Connected State](./screenshots/Screenshot%202026-04-15%20202000.png)
+### 1. Wallet Connection
+*Connect securely using Freighter or other Stellar wallets.*
+![Connected State](./screenshots/Screenshot%202026-04-19%20230913.png)
 
 ### 2. Campaign Dashboard
-*Live campaign stats fetched directly from the Soroban smart contract.*
-![Balance Displayed](./screenshots/Screenshot%202026-04-15%20202000.png)
+*Live campaign stats and progress tracking powered by Soroban.*
+![Campaign Dashboard](./screenshots/Screenshot%202026-04-19%20220027.png)
 
-### 3. Successful Donation
-*Transaction signing and submission via Freighter with hash verification.*
-![Successful Transaction](./screenshots/Screenshot%202026-04-15%20202151.png)
+### 3. Successful Achievement
+*Real-time feedback and celebrations when campaign goals are met.*
+![Goal Reached](./screenshots/Screenshot%202026-04-19%20231538.png)
 
-### 4. Transaction Verification
-*Each transaction can be verified on the Stellar blockchain explorer.*
-![Transaction Result](./screenshots/Screenshot%202026-04-15%20202224.png)
+### 4. Blockchain Verification
+*Full transparency with direct links to the Stellar Expert explorer.*
+![Transaction Verification](./screenshots/Screenshot%202026-04-19%20220056.png)
 
 ---
 
@@ -131,10 +131,10 @@ User Action → Smart Contract → Blockchain → Fetch Data → UI Update
 
 Each transaction can be verified on the Stellar blockchain explorer. Here is a sample transaction hash from a successful campaign donation:
 
-**Transaction Hash**: `b36ecfbd873a78f34b429ed9c16dcd513623cd85fe0defbd81c21510da697ce1`
+**Transaction Hash**: `d5d1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a504`
 
 [View on Stellar Explorer]
-https://stellar.expert/explorer/testnet/tx/b36ecfbd873a78f34b429ed9c16dcd513623cd85fe0defbd81c21510da697ce1
+https://stellar.expert/explorer/testnet/tx/d5d1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a504
 
 ```
 
