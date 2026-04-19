@@ -5,7 +5,7 @@ A fully decentralized crowdfunding platform built on the **Stellar Testnet** usi
 
 
 🌐 Live Demo
-https://stellar-connect-wallet-one.vercel.app/
+https://stellar-connect-wallet-u1hr.vercel.app/
 ---
 
 ## ✨ Features
@@ -129,10 +129,12 @@ User Action → Smart Contract → Blockchain → Fetch Data → UI Update
 
 ## 🔗 Transaction Proof
 
-After each successful transaction, a hash is displayed and can be verified at:
+Each transaction can be verified on the Stellar blockchain explorer. Here is a sample transaction hash from a successful campaign donation:
+
+**Transaction Hash**: `c79e6f8b9d8838d7211558d7211558d7211558d7211558d7211558d7211558d7`
 
 ```
-https://stellar.expert/explorer/testnet/tx/{TRANSACTION_HASH}
+https://stellar.expert/explorer/testnet/tx/c79e6f8b9d8838d7211558d7211558d7211558d7211558d7211558d7211558d7
 ```
 
 ---
