@@ -1,0 +1,116 @@
+.progress-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.progress-bar-container {
+    position: relative;
+    height: 12px;
+    margin: 0 10px;
+}
+
+.progress-bar-background {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transform: translateY(-50%);
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4cc9f0, #4895ef, #4361ee);
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.progress-bar-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: placeholderShimmer 2s infinite linear;
+}
+
+@keyframes placeholderShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.milestone-marker {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: #2b2d42;
+    border: 2px solid #555;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.milestone-marker.reached {
+    background: #4cc9f0;
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
+}
+
+.milestone-label {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #888;
+    font-weight: 600;
+}
+
+.progress-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.percentage-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4cc9f0;
+}
