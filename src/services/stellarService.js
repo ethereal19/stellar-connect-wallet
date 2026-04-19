@@ -463,3 +463,28 @@ export const sendXLM = async (destination, amount, senderAddress) => {
     }
   } catch (err) { throw err; }
 };
+
+export const fetchTransactions = async (address) => {
+  try {
+    if (!address || !StrKey.isValidEd25519PublicKey(address)) {
+      return [];
+    }
+
+    const response = await server.transactions()
+      .forAccount(address)
+      .order('desc')
+      .limit(10)
+      .call();
+
+    return response.records.map(tx => ({
+      hash: tx.hash,
+      created_at: tx.created_at,
+      successful: tx.successful,
+      fee: tx.fee_filled,
+      memo: tx.memo
+    }));
+  } catch (error) {
+    console.error("fetchTransactions failed:", error);
+    return [];
+  }
+};

@@ -1,0 +1,8 @@
+node_modules
+build
+.git
+contracts/**/target/
+contracts/**/target_old/
+contracts/temp_build/
+build_log.txt
+.env

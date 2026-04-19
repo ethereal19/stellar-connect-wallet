@@ -26,3 +26,4 @@ yarn-error.log*
 /contracts/**/target_old/
 /contracts/temp_build/
 build_log.txt
+.vercel
