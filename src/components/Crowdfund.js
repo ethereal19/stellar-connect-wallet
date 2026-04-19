@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Crowdfund.css';
+import ContractTestSuite from './ContractTestSuite';
 import { 
   fetchCampaignData,
   initializeCampaign,
@@ -480,6 +481,9 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
           </div>
         </div>
       )}
+
+      {/* Contract Test Suite */}
+      <ContractTestSuite publicKey={publicKey} balance={balance} stats={stats} />
     </div>
   );
 };

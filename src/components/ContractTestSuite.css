@@ -1,0 +1,148 @@
+.test-suite-container {
+    margin-top: 30px;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+}
+
+.test-suite-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.test-suite-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.run-tests-btn {
+    background: none;
+    border: none;
+    color: #00c6ff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.run-tests-btn:hover {
+    background: rgba(0, 198, 255, 0.1);
+    color: #4dd9ff;
+}
+
+.run-tests-btn:disabled {
+    color: rgba(0, 198, 255, 0.4);
+    cursor: not-allowed;
+}
+
+.test-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.test-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 10px;
+    animation: testSlideIn 0.3s ease-out forwards;
+    opacity: 0;
+    transition: background 0.2s ease;
+}
+
+.test-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+@keyframes testSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.test-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 14px;
+    flex-shrink: 0;
+}
+
+.test-pass .test-icon {
+    background: rgba(40, 167, 69, 0.15);
+}
+
+.test-fail .test-icon {
+    background: rgba(220, 53, 69, 0.15);
+}
+
+.check-icon {
+    color: #28a745;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.fail-icon {
+    color: #dc3545;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.test-name {
+    flex: 1;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 400;
+}
+
+.test-time {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.25);
+    margin-left: 16px;
+    min-width: 50px;
+    text-align: right;
+}
+
+.test-summary {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.summary-count {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.summary-count.all-pass {
+    color: #28a745;
+}
+
+.summary-count.some-fail {
+    color: #dc3545;
+}
+
+.summary-status {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.4);
+}
