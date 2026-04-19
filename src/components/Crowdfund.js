@@ -4,7 +4,8 @@ import {
   fetchCampaignData,
   initializeCampaign,
   donateToCampaign,
-  getAccountBalance 
+  getAccountBalance,
+  withdrawFunds 
 } from '../services/stellarService';
 
 const EXPLORER_BASE = "https://stellar.expert/explorer/testnet/tx/";
@@ -18,6 +19,9 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
   const [fetching, setFetching] = useState(false);
   const [donations, setDonations] = useState([]);
   const [lastTxHash, setLastTxHash] = useState(null);
+  const [withdrawAddress, setWithdrawAddress] = useState('');
+  const [withdrawAmount, setWithdrawAmount] = useState('');
+  const [showWithdraw, setShowWithdraw] = useState(false);
   
   const isFetching = useRef(false);
   const balanceRef = useRef(balance);
@@ -225,6 +229,63 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
     }
   };
 
+  const handleWithdraw = async (e) => {
+    e.preventDefault();
+
+    if (!publicKey) {
+      setStatus({ type: 'error', msg: '⚠️ Connect your wallet first.' });
+      return;
+    }
+    if (!withdrawAddress || withdrawAddress.length !== 56 || !withdrawAddress.startsWith('G')) {
+      setStatus({ type: 'error', msg: '⚠️ Enter a valid Stellar destination address.' });
+      return;
+    }
+    const wAmount = parseFloat(withdrawAmount);
+    if (!withdrawAmount || isNaN(wAmount) || wAmount <= 0) {
+      setStatus({ type: 'error', msg: '⚠️ Enter a valid withdrawal amount.' });
+      return;
+    }
+    const userBalance = parseFloat(balance);
+    if (wAmount > userBalance) {
+      setStatus({ type: 'error', msg: `❌ Insufficient funds. You have ${userBalance.toFixed(2)} XLM.` });
+      return;
+    }
+
+    setLoading(true);
+    setLastTxHash(null);
+    setStatus({ type: 'pending', msg: '⏳ Preparing withdrawal...' });
+    startTimeoutFallback('Withdrawal taking too long.');
+
+    try {
+      setStatus({ type: 'pending', msg: '🔐 Waiting for wallet signature...' });
+      const result = await withdrawFunds(withdrawAddress, withdrawAmount, publicKey);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+      const txHash = extractTxHash(result);
+      if (txHash) {
+        setLastTxHash(txHash);
+        console.log('✅ Withdrawal TX Hash:', txHash);
+      }
+
+      setStatus({ type: 'success', msg: `✅ Withdrawal of ${wAmount} XLM successful!` });
+      setWithdrawAddress('');
+      setWithdrawAmount('');
+      setShowWithdraw(false);
+      await refreshData();
+    } catch (error) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      const msg = error.message || 'Withdrawal failed';
+      if (msg.includes('denied') || msg.includes('rejected') || msg.includes('cancel')) {
+        setStatus({ type: 'error', msg: '❌ Withdrawal rejected by wallet.' });
+      } else {
+        setStatus({ type: 'error', msg: `❌ ${msg}` });
+      }
+    } finally {
+      setLoading(false);
+      setTimeout(() => setStatus({ type: '', msg: '' }), 8000);
+    }
+  };
+
   // Step 2 Logic: progress = (totalRaised / goal) × 100
   const progress = stats.target > 0 ? (stats.total / stats.target) * 100 : 0;
   const isGoalReached = stats.target > 0 && stats.total >= stats.target;
@@ -318,6 +379,57 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
           </form>
         )}
       </div>
+
+      {/* Withdraw Section */}
+      {publicKey && stats.total > 0 && (
+        <div className="withdraw-section">
+          {!showWithdraw ? (
+            <button
+              className="withdraw-toggle-btn"
+              onClick={() => setShowWithdraw(true)}
+              disabled={loading}
+            >
+              💰 Withdraw Funds
+            </button>
+          ) : (
+            <form onSubmit={handleWithdraw} className="withdraw-form">
+              <h3 className="withdraw-title">Withdraw Funds</h3>
+              <div className="input-group">
+                <label>Destination Address</label>
+                <input
+                  type="text"
+                  className="input-field"
+                  placeholder="G..."
+                  value={withdrawAddress}
+                  onChange={(e) => setWithdrawAddress(e.target.value)}
+                  disabled={loading}
+                />
+              </div>
+              <div className="input-group">
+                <label>Amount (XLM)</label>
+                <input
+                  type="number"
+                  className="input-field"
+                  placeholder={`Available: ${parseFloat(balance).toFixed(2)} XLM`}
+                  value={withdrawAmount}
+                  onChange={(e) => setWithdrawAmount(e.target.value)}
+                  disabled={loading}
+                />
+              </div>
+              <div className="withdraw-btn-row">
+                <button type="submit" className="submit-btn withdraw-btn" disabled={loading}>
+                  {loading ? (
+                    <span className="btn-loading"><span className="spinner"></span> Processing...</span>
+                  ) : '🚀 Confirm Withdrawal'}
+                </button>
+                <button type="button" className="cancel-btn" onClick={() => setShowWithdraw(false)} disabled={loading}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      )}
 
       {/* Status Messages */}
       {status.msg && (

@@ -344,3 +344,86 @@
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
+
+/* ===== Withdraw Section ===== */
+.withdraw-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.withdraw-toggle-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.withdraw-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(247, 37, 133, 0.3);
+}
+
+.withdraw-toggle-btn:disabled {
+    background: #333;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.withdraw-form {
+    padding: 20px;
+    background: rgba(247, 37, 133, 0.05);
+    border: 1px solid rgba(247, 37, 133, 0.15);
+    border-radius: 16px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.withdraw-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f72585;
+    margin-bottom: 16px;
+}
+
+.withdraw-btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.withdraw-btn {
+    flex: 1;
+    background: linear-gradient(135deg, #f72585 0%, #b5179e 100%) !important;
+}
+
+.withdraw-btn:hover {
+    box-shadow: 0 10px 20px rgba(247, 37, 133, 0.3) !important;
+}
+
+.cancel-btn {
+    padding: 14px 24px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.cancel-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

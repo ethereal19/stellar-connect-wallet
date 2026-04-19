@@ -488,3 +488,58 @@ export const fetchTransactions = async (address) => {
     return [];
   }
 };
+
+export const withdrawFunds = async (destination, amount, senderAddress) => {
+  try {
+    if (isCooldownActive()) throw new Error("Server is rate-limited. Please wait 30s.");
+
+    if (!senderAddress || !StrKey.isValidEd25519PublicKey(senderAddress)) {
+      throw new Error("Invalid sender wallet address.");
+    }
+    if (!destination || !StrKey.isValidEd25519PublicKey(destination)) {
+      throw new Error("Invalid withdrawal destination address.");
+    }
+
+    const sendAmount = parseFloat(amount);
+    if (isNaN(sendAmount) || sendAmount <= 0) {
+      throw new Error("Invalid withdrawal amount.");
+    }
+
+    console.log(`Withdrawing ${sendAmount} XLM from ${senderAddress} to ${destination}`);
+    let account = await server.loadAccount(senderAddress);
+
+    const tx = new TransactionBuilder(account, {
+      fee: BASE_FEE,
+      networkPassphrase: networkPassphrase,
+    })
+      .addOperation(Operation.payment({
+        destination,
+        asset: Asset.native(),
+        amount: sendAmount.toFixed(7)
+      }))
+      .setTimeout(TimeoutInfinite)
+      .build();
+
+    const signResult = await StellarWalletsKit.signTransaction(tx.toXDR('base64'));
+    const signedTxXdr = typeof signResult === 'string' ? signResult : (signResult.signedTx || signResult.signedTxXdr || signResult.xdr);
+
+    if (!signedTxXdr) throw new Error("Withdrawal signature denied.");
+
+    const readyTx = TransactionBuilder.fromXDR(signedTxXdr, networkPassphrase);
+
+    let result;
+    try {
+      result = await server.submitTransaction(readyTx);
+    } catch (e) {
+      handle429(e);
+      throw e;
+    }
+
+    cache.balance.timestamp = 0;
+    cache.campaign.timestamp = 0;
+
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
