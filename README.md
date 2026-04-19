@@ -131,10 +131,11 @@ User Action → Smart Contract → Blockchain → Fetch Data → UI Update
 
 Each transaction can be verified on the Stellar blockchain explorer. Here is a sample transaction hash from a successful campaign donation:
 
-**Transaction Hash**: `c79e6f8b9d8838d7211558d7211558d7211558d7211558d7211558d7211558d7`
+**Transaction Hash**: `b36ecfbd873a78f34b429ed9c16dcd513623cd85fe0defbd81c21510da697ce1`
 
-```
-https://stellar.expert/explorer/testnet/tx/c79e6f8b9d8838d7211558d7211558d7211558d7211558d7211558d7211558d7
+[View on Stellar Explorer]
+https://stellar.expert/explorer/testnet/tx/b36ecfbd873a78f34b429ed9c16dcd513623cd85fe0defbd81c21510da697ce1
+
 ```
 
 ---
