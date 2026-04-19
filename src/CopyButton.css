@@ -1,0 +1,69 @@
+.copy-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.copy-label {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 500;
+}
+
+.copy-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    max-width: 100%;
+}
+
+.copy-container:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(76, 201, 240, 0.5);
+}
+
+.copy-text {
+    flex: 1;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    color: #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 1rem;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.copy-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.copy-btn.copied {
+    color: #4cc9f0;
+}
+
+.copy-container:hover .copy-btn {
+    color: #bbb;
+}
+
+.copy-container:hover .copy-btn.copied {
+    color: #4cc9f0;
+}
