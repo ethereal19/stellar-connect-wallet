@@ -3,11 +3,16 @@ import "./Header.css";
 import { connectWallet, getAccountBalance, disconnectWallet } from '../services/stellarService';
 
 const Header = ({ connected, setConnected, publicKey, setPublicKey, balance, setBalance }) => {
+  const [loading, setLoading] = React.useState(false);
 
   const connectWalletHandler = async () => {
+    setLoading(true);
     try {
       const key = await connectWallet();
-      if (!key) return;
+      if (!key) {
+        setLoading(false);
+        return;
+      }
 
       const bal = await getAccountBalance(key);
       setPublicKey(key);
@@ -15,6 +20,8 @@ const Header = ({ connected, setConnected, publicKey, setPublicKey, balance, set
       setConnected(true);
     } catch (e) {
       console.error("Connection failed", e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -43,8 +50,12 @@ const Header = ({ connected, setConnected, publicKey, setPublicKey, balance, set
             </button>
           </div>
         ) : (
-          <button className="connect-btn" onClick={connectWalletHandler}>
-            Connect Wallet
+          <button className="connect-btn" onClick={connectWalletHandler} disabled={loading}>
+            {loading ? (
+                <span className="btn-loading">
+                    <span className="spinner"></span> Connecting...
+                </span>
+            ) : 'Connect Wallet'}
           </button>
         )}
       </div>

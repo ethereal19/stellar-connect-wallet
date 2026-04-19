@@ -15,6 +15,7 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
   const [donationInput, setDonationInput] = useState('');
   const [status, setStatus] = useState({ type: '', msg: '' });
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const [donations, setDonations] = useState([]);
   const [lastTxHash, setLastTxHash] = useState(null);
   
@@ -30,6 +31,7 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
     
     if (isFetching.current) return;
     isFetching.current = true;
+    setFetching(true);
 
     try {
       console.log("Refreshing data for address:", publicKey);
@@ -50,6 +52,7 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
       console.warn("Refresh failed", e);
     } finally {
       isFetching.current = false;
+      setFetching(false);
     }
   }, [publicKey, onBalanceUpdate]);
 
@@ -230,7 +233,10 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
   return (
     <div className="crowdfund-container">
       <div className="crowdfund-header">
-        <h2 className="crowdfund-title">Community Fund</h2>
+        <div className="header-title-row">
+            <h2 className="crowdfund-title">Community Fund</h2>
+            {fetching && <div className="fetching-badge"><span className="spinner-small"></span> Syncing...</div>}
+        </div>
         <p className="hero-subtitle">Support our latest decentralized project.</p>
       </div>
 
