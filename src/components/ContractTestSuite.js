@@ -11,8 +11,8 @@ const ContractTestSuite = ({ publicKey, balance, stats }) => {
       name: 'initialize() stores goal in stroops correctly',
       run: () => {
         const goalXLM = 1000;
-        const stroops = BigInt(Math.floor(goalXLM * 10000000));
-        return stroops === BigInt(10000000000);
+        const stroops = Math.floor(goalXLM * 10000000);
+        return stroops === 10000000000;
       }
     },
     {

@@ -1,4 +1,5 @@
 #![no_std]
+mod test;
 use soroban_sdk::{contract, contractimpl, symbol_short, Address, Env, Symbol};
 
 #[contract]
