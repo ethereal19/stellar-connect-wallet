@@ -3,7 +3,7 @@
 A fully decentralized crowdfunding platform built on the **Stellar Testnet** using **Soroban smart contracts**. Users can create campaigns, donate XLM, and track progress in real-time — all powered by on-chain data.
 
 🌐 Live Demo
-https://stellar-connect-wallet-u1hr.vercel.app/
+https://stellar-connect-wallet-one.vercel.app/
 ---
 
 ## ✨ Features
