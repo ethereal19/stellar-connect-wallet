@@ -2,8 +2,6 @@
 
 A fully decentralized crowdfunding platform built on the **Stellar Testnet** using **Soroban smart contracts**. Users can create campaigns, donate XLM, and track progress in real-time — all powered by on-chain data.
 
-
-
 🌐 Live Demo
 https://stellar-connect-wallet-u1hr.vercel.app/
 ---
@@ -13,11 +11,11 @@ https://stellar-connect-wallet-u1hr.vercel.app/
 *   **Wallet Integration**: Full support for Freighter wallet and StellarWalletsKit (Albedo, xBull).
 *   **Live Balance Fetching**: Real-time XLM balance from the Stellar Horizon server.
 *   **Crowdfunding dApp**: Decentralized crowdfunding with on-chain campaign initialization, donations, and progress tracking via Soroban smart contracts.
+*   **Withdrawal System**: Secure withdrawal functionality allowing users to send raised XLM to destination addresses.
 *   **Transaction Verification**: Each transaction produces a hash that can be verified on the Stellar blockchain explorer.
-*   **Data Persistence**: All campaign data (goal, total raised) is stored on-chain and persists across page refreshes.
-*   **Advanced Error Handling**: Clear feedback for wallet disconnection, insufficient funds, and rejected transactions.
-*   **Rate Limit Protection**: Built-in 120-second cooldown with request deduplication and caching.
+*   **Visual Test Suite**: In-app test runner with 7 visual test cases for contract logic (Goal setting, validation, etc.).
 *   **Premium UI**: Sleek glassmorphism dark theme with loading spinners, progress bars, and micro-animations.
+*   **Automated Tests**: 3 comprehensive React unit tests ensuring stable rendering and robust input validation.
 
 ---
 
@@ -36,7 +34,7 @@ https://stellar-connect-wallet-u1hr.vercel.app/
 
 ## 📜 Smart Contract (Soroban)
 
-*   **Contract ID**: `CDCCIQ2KVLRFU5GEXGGHTFE5ICCRUZ77H2SFFBNCYFKNCSMGGPQYPLUH`
+*   **Contract ID**: `CC6CATMGJTD5KUYQDJQRIKWXETMLUDLFFZC2CLL5FD3XH27C6GI3EOUG`
 *   **Network**: Stellar Testnet
 *   **Source**: `contracts/crowdfund/src/lib.rs`
 
@@ -51,45 +49,41 @@ https://stellar-connect-wallet-u1hr.vercel.app/
 
 ---
 
+## ✅ Tests
+
+### 1. Automated Unit Tests
+The project includes 3 passing tests in `src/App.test.js` to ensure stability.
+To run them:
+```bash
+npm test -- --watchAll=false
+```
+
+### 2. In-App Visual Test Suite
+Located at the bottom of the Crowdfund page, this suite validates 7 contract scenarios:
+*   Initial state verification
+*   Goal storage accuracy
+*   Input validation for donations
+*   Remaining balance calculations
+
+---
+
 ## ⚙️ Setup Instructions
 
 ### 1. Prerequisites
 *   [Node.js](https://nodejs.org/) (v16+)
-*   [Freighter Wallet](https://www.freighter.app/) browser extension (set to **Testnet**)
+*   [Freighter Wallet](https://www.freighter.app/) extension (Set to **Testnet**)
 
-### 2. Clone the Repository
+### 2. Install & Run
 ```bash
-git clone https://github.com/YOUR_USERNAME/stellar-connect-wallet.git
+git clone https://github.com/ethereal19/stellar-connect-wallet.git
 cd stellar-connect-wallet
-```
-
-### 3. Install Dependencies
-```bash
 npm install
-```
-
-### 4. Run the Application
-```bash
 npm start
 ```
 The app will be available at `http://localhost:3000`.
 
-### 5. Fund Your Wallet
-Fund your Testnet account using the [Stellar Friendbot](https://laboratory.stellar.org/#account-creator?network=testnet).
-
----
-
-## 🔄 Application Flow
-
-```
-User Action → Smart Contract → Blockchain → Fetch Data → UI Update
-```
-
-1. **Connect Wallet** → Freighter provides the user's public key
-2. **Start Campaign** → Calls `initialize(goal)` on the Soroban contract
-3. **Donate** → Calls `donate(donor, amount)` on the contract
-4. **Fetch Data** → Simulates `get_target()` and `get_total()` to read on-chain state
-5. **Verify** → Transaction hash links directly to Stellar Explorer
+### 3. Fund Your Wallet
+IMPORTANT: To interact with the contract, you need Testnet XLM. Use the [Stellar Friendbot](https://laboratory.stellar.org/#account-creator?network=testnet) to fund your public key.
 
 ---
 
@@ -102,41 +96,26 @@ User Action → Smart Contract → Blockchain → Fetch Data → UI Update
 | Insufficient balance | "❌ Insufficient funds. You have X XLM." |
 | Donation exceeds goal | "❌ Exceeds goal. Max donation: X XLM." |
 | Transaction rejected | "❌ Transaction rejected by wallet." |
-| Rate limited (429) | 120-second automatic cooldown |
 | Already initialized | "This campaign has already been started." |
 
 ---
 
 ## 📸 Screenshots
 
-### 1. Wallet Connection
-*Connect securely using Freighter or other Stellar wallets.*
-![Connected State](./screenshots/Screenshot%202026-04-19%20230913.png)
+### 1. New Visual Test Suite
+*Real-time validation of contract logic inside the dApp.*
+![Test Suite](./screenshots/Screenshot%202026-04-20%20175114.png)
 
-### 2. Campaign Dashboard
-*Live campaign stats and progress tracking powered by Soroban.*
-![Campaign Dashboard](./screenshots/Screenshot%202026-04-19%20220027.png)
-
-### 3. Successful Achievement
+### 2. Successful Achievement
 *Real-time feedback and celebrations when campaign goals are met.*
-![Goal Reached](./screenshots/Screenshot%202026-04-19%20231538.png)
-
-### 4. Blockchain Verification
-*Full transparency with direct links to the Stellar Expert explorer.*
-![Transaction Verification](./screenshots/Screenshot%202026-04-19%20220056.png)
+![Goal Reached](./screenshots/Screenshot%202026-04-20%20175020.png)
 
 ---
 
-## 🔗 Transaction Proof
+## 🔗 Transaction Proof (Latest)
 
-Each transaction can be verified on the Stellar blockchain explorer. Here is a sample transaction hash from a successful campaign donation:
-
-**Transaction Hash**: `d5d1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a504`
-
-[View on Stellar Explorer]
-https://stellar.expert/explorer/testnet/tx/d5d1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a504
-
-```
+**Transaction Hash**: `c5b1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a505`
+[View on Stellar Explorer](https://stellar.expert/explorer/testnet/tx/c5b1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a505)
 
 ---
 
