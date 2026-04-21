@@ -1,4 +1,6 @@
 # 🌟 StellarPay — Decentralized Crowdfunding dApp
+![StellarPay CI](https://github.com/ethereal19/stellar-connect-wallet/actions/workflows/main.yml/badge.svg)
+
 
 A fully decentralized crowdfunding platform built on the **Stellar Testnet** using **Soroban smart contracts**. Users can create campaigns, donate XLM, and track progress in real-time — all powered by on-chain data.
 
