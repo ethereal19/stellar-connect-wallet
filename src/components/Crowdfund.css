@@ -346,6 +346,14 @@
 }
 
 /* ===== Withdraw Section ===== */
+.tx-indexing-note {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
 .withdraw-section {
     margin-top: 25px;
     padding-top: 20px;

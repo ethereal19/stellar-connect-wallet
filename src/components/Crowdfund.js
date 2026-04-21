@@ -452,6 +452,7 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
           >
             🔍 View on Stellar Explorer
           </a>
+          <p className="tx-indexing-note">(Note: Indexing on explorer may take 5-10s)</p>
         </div>
       )}
 
