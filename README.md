@@ -35,20 +35,35 @@ A fully decentralized crowdfunding platform built on the **Stellar Testnet** usi
 
 ---
 
-## 📜 Smart Contract (Soroban)
+## 📜 Smart Contracts (Soroban)
 
-*   **Contract ID**: `CC6CATMGJTD5KUYQDJQRIKWXETMLUDLFFZC2CLL5FD3XH27C6GI3EOUG`
+### Crowdfund Contract
+*   **Contract ID**: `CDLGCZWJES6X3HVJN2HZFTMFPIHODJP4TF7B5YE2M6DPKUDRGHF3AIBH`
 *   **Network**: Stellar Testnet
 *   **Source**: `contracts/crowdfund/src/lib.rs`
 
-### Contract Functions
+| Function | Description | Arguments |
+|----------|-------------|-----------|
+| `initialize` | Sets goal and links SFUND token | `target: i128, token_id: Address` |
+| `donate` | Records donation + mints SFUND tokens (inter-contract call) | `donor: Address, amount: i128` |
+| `get_total` | Returns total XLM raised (in stroops) | None |
+| `get_target` | Returns the campaign goal (in stroops) | None |
+| `get_token` | Returns the linked SFUND token contract ID | None |
+
+### SFUND Token Contract
+*   **Contract ID**: `CDKK7RCL5HO74IL5RCSAONUYSVHDOBLZTPCK6DPRZVEDMFHMBZKZEOIL`
+*   **Source**: `contracts/token/src/lib.rs`
 
 | Function | Description | Arguments |
 |----------|-------------|-----------|
-| `initialize` | Sets the campaign fundraising goal | `target: i128` (in stroops) |
-| `donate` | Records a donation to the campaign | `donor: Address, amount: i128` |
-| `get_total` | Returns total XLM raised (in stroops) | None |
-| `get_target` | Returns the campaign goal (in stroops) | None |
+| `initialize` | Sets the admin address | `admin: Address` |
+| `mint` | Creates SFUND tokens for a recipient | `to: Address, amount: i128` |
+| `balance` | Returns SFUND balance for an address | `account: Address` |
+
+### ⛓️ Inter-Contract Call Flow
+```
+User donates XLM → Crowdfund.donate() → records total → calls Token.mint() → SFUND tokens sent to donor
+```
 
 ---
 
