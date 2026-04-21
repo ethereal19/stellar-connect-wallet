@@ -35,6 +35,9 @@ const sorobanServer = SorobanServer ? new SorobanServer(sorobanUrl) : null;
 // Verified Contract ID
 export const CONTRACT_ID = process.env.REACT_APP_CONTRACT_ID || "CDCCIQ2KVLRFU5GEXGGHTFE5ICCRUZ77H2SFFBNCYFKNCSMGGPQYPLUH";
 
+// SFUND Token Contract ID (Level 4 — Inter-contract call)
+export const TOKEN_CONTRACT_ID = process.env.REACT_APP_TOKEN_CONTRACT_ID || "CDKK7RCL5HO74IL5RCSAONUYSVHDOBLZTPCK6DPRZVEDMFHMBZKZEOIL";
+
 StellarWalletsKit.init({
   network: Networks.TESTNET,
   modules: typeof defaultModules === 'function' ? defaultModules() : [],
@@ -543,3 +546,38 @@ export const withdrawFunds = async (destination, amount, senderAddress) => {
     throw error;
   }
 };
+
+// ================= SFUND TOKEN (Level 4) =================
+
+export const fetchSFUNDBalance = async (publicKey) => {
+  if (!sorobanServer || !publicKey) return 0;
+
+  try {
+    const tokenContract = new Contract(TOKEN_CONTRACT_ID);
+    const accountAddress = new Address(publicKey);
+
+    const tx = new TransactionBuilder(
+      new Account(publicKey, '0'),
+      {
+        fee: BASE_FEE,
+        networkPassphrase: networkPassphrase,
+      }
+    )
+      .addOperation(tokenContract.call('balance', accountAddress.toScVal()))
+      .setTimeout(30)
+      .build();
+
+    const simResult = await sorobanServer.simulateTransaction(tx);
+
+    if (simResult && simResult.result && simResult.result.retval) {
+      const balanceVal = scValToNative(simResult.result.retval);
+      // Convert from stroops to whole tokens
+      return Number(balanceVal) / 10000000;
+    }
+    return 0;
+  } catch (error) {
+    console.log('SFUND balance fetch error (expected if no donations yet):', error.message);
+    return 0;
+  }
+};
+

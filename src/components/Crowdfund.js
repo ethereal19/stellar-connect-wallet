@@ -6,7 +6,8 @@ import {
   initializeCampaign,
   donateToCampaign,
   getAccountBalance,
-  withdrawFunds 
+  withdrawFunds,
+  fetchSFUNDBalance 
 } from '../services/stellarService';
 
 const EXPLORER_BASE = "https://stellar.expert/explorer/testnet/tx/";
@@ -23,6 +24,7 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
   const [withdrawAddress, setWithdrawAddress] = useState('');
   const [withdrawAmount, setWithdrawAmount] = useState('');
   const [showWithdraw, setShowWithdraw] = useState(false);
+  const [sfundBalance, setSfundBalance] = useState(0);
   
   const isFetching = useRef(false);
   const balanceRef = useRef(balance);
@@ -53,6 +55,12 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
       if (currentBalance !== balanceRef.current) {
         onBalanceUpdate(currentBalance);
       }
+
+      // Fetch SFUND token balance (Level 4)
+      try {
+        const sfund = await fetchSFUNDBalance(publicKey);
+        setSfundBalance(sfund);
+      } catch (e) { /* SFUND fetch is non-critical */ }
     } catch (e) {
       console.warn("Refresh failed", e);
     } finally {
@@ -312,6 +320,10 @@ const Crowdfund = ({ publicKey, balance, onBalanceUpdate }) => {
         <div className="stat-card">
           <div className="stat-label">Goal</div>
           <div className="stat-value">{stats.target.toLocaleString()} XLM</div>
+        </div>
+        <div className="stat-card sfund-card">
+          <div className="stat-label">SFUND Tokens</div>
+          <div className="stat-value sfund-value">{sfundBalance.toFixed(2)} SFUND</div>
         </div>
       </div>
 
