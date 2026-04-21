@@ -3,7 +3,8 @@
 A fully decentralized crowdfunding platform built on the **Stellar Testnet** using **Soroban smart contracts**. Users can create campaigns, donate XLM, and track progress in real-time — all powered by on-chain data.
 
 🌐 Live Demo
-https://stellar-connect-wallet-one.vercel.app/
+*   **Web App**: [https://stellar-connect-wallet-one.vercel.app/](https://stellar-connect-wallet-one.vercel.app/)
+*   **Video Demo**: [Watch the walkthrough here](https://drive.google.com/file/d/17gIi4HeI9REHO2JPc58ZyvLEI67I26Uh/view)
 ---
 
 ## ✨ Features
@@ -52,8 +53,22 @@ https://stellar-connect-wallet-one.vercel.app/
 ## ✅ Tests
 
 ### 1. Automated Unit Tests
-The project includes 3 passing tests in `src/App.test.js` to ensure stability.
-To run them:
+The project includes 8 passing tests across 3 modules (App, Crowdfund, and Payment). 
+
+**Terminal Output Proof:**
+```text
+PASS  src/App.test.js
+PASS  src/components/Crowdfund.test.js
+PASS  src/components/Payment.test.js
+
+Test Suites: 3 passed, 3 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        9.644 s
+Ran all test suites.
+```
+
+To run tests locally:
 ```bash
 npm test -- --watchAll=false
 ```
