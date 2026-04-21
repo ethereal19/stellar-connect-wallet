@@ -8,7 +8,10 @@ fn test_initialize() {
     let contract_id = env.register_contract(None, CrowdfundContract);
     let client = CrowdfundContractClient::new(&env, &contract_id);
 
-    client.initialize(&1000);
+    // Register a mock token contract for the inter-contract call
+    let token_id = env.register_contract_wasm(None, token_contract::WASM);
+
+    client.initialize(&1000, &token_id);
     assert_eq!(client.get_target(), 1000);
     assert_eq!(client.get_total(), 0);
 }
@@ -22,7 +25,10 @@ fn test_donate() {
 
     let donor = Address::generate(&env);
 
-    client.initialize(&1000);
+    // Register a mock token contract for the inter-contract call
+    let token_id = env.register_contract_wasm(None, token_contract::WASM);
+
+    client.initialize(&1000, &token_id);
     client.donate(&donor, &500);
 
     assert_eq!(client.get_total(), 500);
@@ -39,3 +45,4 @@ fn test_get_target_uninitialized() {
 
     assert_eq!(client.get_target(), 0);
 }
+
