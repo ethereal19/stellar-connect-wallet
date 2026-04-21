@@ -129,8 +129,8 @@ IMPORTANT: To interact with the contract, you need Testnet XLM. Use the [Stellar
 
 ## 🔗 Transaction Proof (Latest)
 
-**Transaction Hash**: `c5b1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a505`
-[View on Stellar Explorer](https://stellar.expert/explorer/testnet/tx/c5b1662f31268a7cfb2822c8fc59c70a4b27ad6915a3f586463fd7877217a505)
+**Transaction Hash**: `f444477e73748a48a3e453b77fbe18dba8ba4ed3bcb43c81130dec0398f0e78b`
+[View on Stellar Explorer](https://stellar.expert/explorer/testnet/tx/f444477e73748a48a3e453b77fbe18dba8ba4ed3bcb43c81130dec0398f0e78b)
 
 ---
 
