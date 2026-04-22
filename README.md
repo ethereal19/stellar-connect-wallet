@@ -151,7 +151,15 @@ IMPORTANT: To interact with the contract, you need Testnet XLM. Use the [Stellar
 
 ![Goal Reached](./screenshots/Screenshot%202026-04-19%20220027.png)
 
-### 2. Mobile Responsive View
+### 2. Wallet Confirmation (Freighter)
+*Seamless integration with the Freighter wallet for secure transaction signing.*
+![Wallet Confirmation](./screenshots/Screenshot%202026-04-15%20202151.png)
+
+### 3. Successful XLM Transfer
+*Real-time feedback after a successful on-chain transaction.*
+![XLM Transfer](./screenshots/Screenshot%202026-04-15%20202224.png)
+
+### 4. Mobile Responsive View
 *The dApp is fully responsive across mobile, tablet, and desktop devices.*
 ![Mobile View](./screenshots/Screenshot%202026-04-22%20172826.png)
 
