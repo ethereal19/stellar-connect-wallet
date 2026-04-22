@@ -37,4 +37,21 @@ impl TokenContract {
     pub fn balance(env: Env, account: Address) -> i128 {
         env.storage().persistent().get(&account).unwrap_or(0)
     }
+
+    /// Transfer tokens from one account to another (Standard Proof)
+    pub fn transfer(env: Env, from: Address, to: Address, amount: i128) {
+        from.require_auth();
+
+        let mut balance_from: i128 = env.storage().persistent().get(&from).unwrap_or(0);
+        if balance_from < amount {
+            panic!("Insufficient balance");
+        }
+        balance_from -= amount;
+        env.storage().persistent().set(&from, &balance_from);
+
+        let mut balance_to: i128 = env.storage().persistent().get(&to).unwrap_or(0);
+        balance_to += amount;
+        env.storage().persistent().set(&to, &balance_to);
+    }
 }
+

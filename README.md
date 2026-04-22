@@ -1,5 +1,5 @@
 # 🌟 StellarPay — Decentralized Crowdfunding dApp
-![StellarPay CI](https://github.com/ethereal19/stellar-connect-wallet/actions/workflows/main.yml/badge.svg)
+![StellarPay CI](https://github.com/ethereal19/stellar-connect-wallet/actions/workflows/ci.yml/badge.svg)
 
 
 A fully decentralized crowdfunding platform built on the **Stellar Testnet** using **Soroban smart contracts**. Users can create campaigns, donate XLM, and track progress in real-time — all powered by on-chain data.
@@ -7,6 +7,15 @@ A fully decentralized crowdfunding platform built on the **Stellar Testnet** usi
 🌐 Live Demo
 *   **Web App**: [https://stellar-connect-wallet-one.vercel.app/](https://stellar-connect-wallet-one.vercel.app/)
 *   **Video Demo**: [Watch the walkthrough here](https://drive.google.com/file/d/17gIi4HeI9REHO2JPc58ZyvLEI67I26Uh/view)
+
+---
+
+### 🔑 Quick Reference (Testnet)
+| Contract | ID |
+|----------|----|
+| **Crowdfund** | `CDWXS6ITLHDH666GUQQ2H2HPM7K7YYKZLMLYFIMZU7AO4TL27625UUQ4` |
+| **SFUND Token** | `CDKK7RCL5HO74IL5RCSAONUYSVHDOBLZTPCK6DPRZVEDMFHMBZKZEOIL` |
+
 ---
 
 ## ✨ Features
@@ -37,9 +46,9 @@ A fully decentralized crowdfunding platform built on the **Stellar Testnet** usi
 
 ## 📜 Smart Contracts (Soroban)
 
-### Crowdfund Contract
-*   **Contract ID**: `CDLGCZWJES6X3HVJN2HZFTMFPIHODJP4TF7B5YE2M6DPKUDRGHF3AIBH`
-*   **Network**: Stellar Testnet
+### Crowdfund Contract (v3)
+*   **Contract ID**: `CDWXS6ITLHDH666GUQQ2H2HPM7K7YYKZLMLYFIMZU7AO4TL27625UUQ4`
+*   **Explorer**: [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CDWXS6ITLHDH666GUQQ2H2HPM7K7YYKZLMLYFIMZU7AO4TL27625UUQ4)
 *   **Source**: `contracts/crowdfund/src/lib.rs`
 
 | Function | Description | Arguments |
@@ -50,8 +59,9 @@ A fully decentralized crowdfunding platform built on the **Stellar Testnet** usi
 | `get_target` | Returns the campaign goal (in stroops) | None |
 | `get_token` | Returns the linked SFUND token contract ID | None |
 
-### SFUND Token Contract
+### SFUND Token Contract (v3)
 *   **Contract ID**: `CDKK7RCL5HO74IL5RCSAONUYSVHDOBLZTPCK6DPRZVEDMFHMBZKZEOIL`
+*   **Explorer**: [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CDKK7RCL5HO74IL5RCSAONUYSVHDOBLZTPCK6DPRZVEDMFHMBZKZEOIL)
 *   **Source**: `contracts/token/src/lib.rs`
 
 | Function | Description | Arguments |
@@ -59,6 +69,7 @@ A fully decentralized crowdfunding platform built on the **Stellar Testnet** usi
 | `initialize` | Sets the admin address | `admin: Address` |
 | `mint` | Creates SFUND tokens for a recipient | `to: Address, amount: i128` |
 | `balance` | Returns SFUND balance for an address | `account: Address` |
+| `transfer` | Transfers tokens between accounts (Proof) | `from: Address, to: Address, amount: i128` |
 
 ### ⛓️ Inter-Contract Call Flow
 ```
@@ -136,18 +147,29 @@ IMPORTANT: To interact with the contract, you need Testnet XLM. Use the [Stellar
 
 ### 1. New Visual Test Suite
 *Real-time validation of contract logic inside the dApp.*
-![Test Suite](./screenshots/Screenshot%202026-04-20%20175114.png)
+![Test Suite](./screenshots/Screenshot%202026-04-21%20140559.png)
 
-### 2. Successful Achievement
-*Real-time feedback and celebrations when campaign goals are met.*
-![Goal Reached](./screenshots/Screenshot%202026-04-20%20175020.png)
+![Goal Reached](./screenshots/Screenshot%202026-04-19%20220027.png)
+
+### 2. Mobile Responsive View
+*The dApp is fully responsive across mobile, tablet, and desktop devices.*
+![Mobile View](./screenshots/Screenshot%202026-04-19%20231538.png)
+
+
+### 3. Level 4 Verification: Inter-Contract Calls
+*Proof of the Crowdfund contract successfully calling the SFUND Token contract's `mint` function.*
+![Inter-Contract Call](./screenshots/Screenshot%202026-04-22%20170519.png)
+
+### 4. Custom Token Proof: SFUND Transfer
+*Verification of the SFUND token contract on Stellar Expert.*
+![Token Transfer](./screenshots/Screenshot%202026-04-22%20171619.png)
 
 ---
 
 ## 🔗 Transaction Proof (Latest)
 
-**Transaction Hash**: `f444477e73748a48a3e453b77fbe18dba8ba4ed3bcb43c81130dec0398f0e78b`
-[View on Stellar Explorer](https://stellar.expert/explorer/testnet/tx/f444477e73748a48a3e453b77fbe18dba8ba4ed3bcb43c81130dec0398f0e78b)
+**Transaction Hash**: `ff4c5a22823c0a0db8dc253e006c22ccc3dcf6807816e200a786a7c3e0331ee6`
+[View on Stellar Explorer](https://stellar.expert/explorer/testnet/tx/ff4c5a22823c0a0db8dc253e006c22ccc3dcf6807816e200a786a7c3e0331ee6)
 
 ---
 

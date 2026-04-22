@@ -42,8 +42,20 @@ This document summarizes the current state of the **StellarPay** project develop
 *   **Intelligent Caching**: Expanded the service-layer cache to 15 seconds to reduce redundant network hits.
 *   **Request Deduplication & Lock**: Ensured that concurrent UI updates use fetch locks and reuse existing network promises.
 
+### 9. Level 4 Requirements (Advanced Soroban)
+*   **Custom Token Deployment**: Successfully deployed the **SFUND** token contract.
+*   **Inter-Contract Calls**: Implemented and verified logic where the Crowdfund contract calls the SFUND contract's `mint` function during a donation.
+*   **On-Chain Verification**: Verified the inter-contract call flow via Stellar Expert (as shown in latest screenshots).
+
 ---
 
 
 ## 🚀 Current Status
-The application is now a fully functional Crowdfunding dApp live on the **Stellar Testnet**. The Soroban smart contract has been deployed (`CDCCIQ2KVLRFU5GEXGGHTFE5ICCRUZ77H2SFFBNCYFKNCSMGGPQYPLUH`), and the frontend is successfully communicating with the blockchain. Users can connect multiple wallets, initialize campaigns, donate XLM, and track project goals in real-time. Project documentation and architectural plans have been updated to reflect the final deployment state.
+The application is now a fully functional **Level 4 Stellar Crowdfunding dApp**. The inter-contract call flow between the Crowdfund contract and the SFUND token contract has been successfully deployed and verified on the **Stellar Testnet**. 
+
+**Latest Verified Contracts:**
+- **Crowdfund (v3)**: `CDWXS6ITLHDH666GUQQ2H2HPM7K7YYKZLMLYFIMZU7AO4TL27625UUQ4`
+- **SFUND Token (v3)**: `CDKK7RCL5HO74IL5RCSAONUYSVHDOBLZTPCK6DPRZVEDMFHMBZKZEOIL`
+
+The frontend is fully integrated, providing real-time stats, SFUND balance tracking, and transaction proofs.
+

@@ -33,7 +33,7 @@ const server = new Horizon.Server(horizonUrl);
 const sorobanServer = SorobanServer ? new SorobanServer(sorobanUrl) : null;
 
 // Verified Contract ID
-export const CONTRACT_ID = process.env.REACT_APP_CONTRACT_ID || "CDCCIQ2KVLRFU5GEXGGHTFE5ICCRUZ77H2SFFBNCYFKNCSMGGPQYPLUH";
+export const CONTRACT_ID = process.env.REACT_APP_CONTRACT_ID || "CDWXS6ITLHDH666GUQQ2H2HPM7K7YYKZLMLYFIMZU7AO4TL27625UUQ4";
 
 // SFUND Token Contract ID (Level 4 — Inter-contract call)
 export const TOKEN_CONTRACT_ID = process.env.REACT_APP_TOKEN_CONTRACT_ID || "CDKK7RCL5HO74IL5RCSAONUYSVHDOBLZTPCK6DPRZVEDMFHMBZKZEOIL";
