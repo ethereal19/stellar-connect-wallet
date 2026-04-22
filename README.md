@@ -182,6 +182,24 @@ IMPORTANT: To interact with the contract, you need Testnet XLM. Use the [Stellar
 ---
 
 
+### 5. CI/CD Pipeline Verification
+*Automated build and deployment status via GitHub Actions.*
+![CI/CD Verification](./screenshots/Screenshot%202026-04-22%20172911.png)
+
+---
+
+## ✅ Submission Checklist
+This project meets all the requirements for the final evaluation:
+
+*   [x] **Public GitHub Repository**: Accessible at [github.com/ethereal19/stellar-connect-wallet](https://github.com/ethereal19/stellar-connect-wallet)
+*   [x] **README with Complete Documentation**: Includes setup, tech stack, and contract details.
+*   [x] **8+ Meaningful Commits**: Total of 54 commits in history.
+*   [x] **Live Demo Link**: [StellarPay Live on Vercel](https://stellar-connect-wallet-one.vercel.app/)
+*   [x] **Mobile Responsive View**: [See Screenshot Below](#4-mobile-responsive-view)
+*   [x] **CI/CD Pipeline Running**: [Action Badge Verified](https://github.com/ethereal19/stellar-connect-wallet/actions)
+*   [x] **Contract Addresses & Transaction Hash**: Verified inter-contract donation flow.
+*   [x] **Token/Pool Address**: SFUND Token deployed and verified.
+
 ---
 
 ## 📜 License
