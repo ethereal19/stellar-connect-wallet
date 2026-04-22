@@ -145,32 +145,17 @@ IMPORTANT: To interact with the contract, you need Testnet XLM. Use the [Stellar
 
 ## 📸 Screenshots
 
-### 1. New Visual Test Suite
-*Real-time validation of contract logic inside the dApp.*
-![Test Suite](./screenshots/Screenshot%202026-04-21%20140559.png)
-
-![Goal Reached](./screenshots/Screenshot%202026-04-19%20220027.png)
-
-### 2. Wallet Confirmation (Freighter)
-*Seamless integration with the Freighter wallet for secure transaction signing.*
-![Wallet Confirmation](./screenshots/Screenshot%202026-04-15%20202151.png)
-
-### 3. Successful XLM Transfer
-*Real-time feedback after a successful on-chain transaction.*
-![XLM Transfer](./screenshots/Screenshot%202026-04-15%20202224.png)
-
-### 4. Mobile Responsive View
+### 1. Mobile Responsive View
 *The dApp is fully responsive across mobile, tablet, and desktop devices.*
 ![Mobile View](./screenshots/Screenshot%202026-04-22%20172826.png)
 
-
-### 3. Level 4 Verification: Inter-Contract Calls
+### 2. Level 4 Verification: Inter-Contract Calls
 *Proof of the Crowdfund contract successfully calling the SFUND Token contract's `mint` function.*
 ![Inter-Contract Call](./screenshots/Screenshot%202026-04-22%20170519.png)
 
-### 4. Custom Token Proof: SFUND Transfer
-*Verification of the SFUND token contract on Stellar Expert.*
-![Token Transfer](./screenshots/Screenshot%202026-04-22%20171619.png)
+### 3. CI/CD Pipeline Verification
+*Automated build and deployment status via GitHub Actions.*
+![CI/CD Verification](./screenshots/Screenshot%202026-04-22%20172911.png)
 
 ---
 
@@ -195,7 +180,7 @@ This project meets all the requirements for the final evaluation:
 *   [x] **README with Complete Documentation**: Includes setup, tech stack, and contract details.
 *   [x] **8+ Meaningful Commits**: Total of 54 commits in history.
 *   [x] **Live Demo Link**: [StellarPay Live on Vercel](https://stellar-connect-wallet-one.vercel.app/)
-*   [x] **Mobile Responsive View**: [See Screenshot Below](#4-mobile-responsive-view)
+*   [x] **Mobile Responsive View**: [See Screenshot Below](#1-mobile-responsive-view)
 *   [x] **CI/CD Pipeline Running**: [Action Badge Verified](https://github.com/ethereal19/stellar-connect-wallet/actions)
 *   [x] **Contract Addresses & Transaction Hash**: Verified inter-contract donation flow.
 *   [x] **Token/Pool Address**: SFUND Token deployed and verified.
