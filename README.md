@@ -6,7 +6,7 @@ A fully decentralized crowdfunding platform built on the **Stellar Testnet** usi
 
 🌐 Live Demo
 *   **Web App**: [https://stellar-connect-wallet-one.vercel.app/](https://stellar-connect-wallet-one.vercel.app/)
-*   **Video Demo**: [Watch the walkthrough here](https://drive.google.com/file/d/17gIi4HeI9REHO2JPc58ZyvLEI67I26Uh/view)
+*   **Video Demo**: [Watch the walkthrough here](https://youtu.be/9QP5BKzhC9U)
 
 ---
 
@@ -153,7 +153,7 @@ IMPORTANT: To interact with the contract, you need Testnet XLM. Use the [Stellar
 
 ### 2. Mobile Responsive View
 *The dApp is fully responsive across mobile, tablet, and desktop devices.*
-![Mobile View](./screenshots/Screenshot%202026-04-19%20231538.png)
+![Mobile View](./screenshots/Screenshot%202026-04-22%20172826.png)
 
 
 ### 3. Level 4 Verification: Inter-Contract Calls
